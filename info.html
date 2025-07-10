@@ -28,26 +28,27 @@
         </div>
     </section>
 <script>
+
+    const card = document.getElementById("info-card");
     async function getData() {
-        return fetch("/api/info")
-            .then(res => res.json())
-            .then(json => {
-                return json
+        fetch("/api/info")
+        .then(res => {
+            if (res.ok) {
+                res.json().then(text => card.innerHTML = "<section>"+data+"</section>")
+            }
+            return Promise.reject(res)
+        })
+        .catch(res => {
+            console.log(res.status, res.statusText)
+            res.json().then(json => {
+                card.innerHTML = "<section><p>No data found</p><p>"+res.statusText+"</p></section>"
+
             })
-            .catch(error => {
-                return null;
-            })
+        })
     }
 
-    async function init() {
-        const data = await getData();
-        const card = document.getElementById("info-card")
-        console.log(data);
-        if (data === null) {
-            card.innerHTML = "<section><p>No data found</p></section>";
-        } else {
-            card.innerHTML = "<section>"+data+"</section>";
-        }
+    function init() {
+        getData();
     }
 
     init();
