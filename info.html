@@ -42,6 +42,7 @@
     async function init() {
         const data = await getData();
         const card = document.getElementById("info-card")
+        console.log(data);
         if (data === null) {
             card.innerHTML = "<section><p>No data found</p></section>";
         } else {

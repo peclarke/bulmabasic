@@ -1,4 +1,4 @@
-import azure.functions as func
+import azure.functions as func # type: ignore
 import logging
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
