@@ -16,35 +16,31 @@ env:
 
 jobs:
   build:
-    defaults:
-      run:
-        working-directory: ./api
-
-    runs-on: ubuntu-latest #-- GitHub hosted runner: the list are :
-    steps:                 #-- ubuntu, windows, macos
+    runs-on: ubuntu-latest
+    steps:
       - name: Checkout repository
-        uses: actions/checkout@v4 #-- checkout the branch
+        uses: actions/checkout@v4
 
       - name: Setup Python version
-        uses: actions/setup-python@v1 #-- setup python on runner
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Create and start virtual environment
-        run: | #-- 'run' is used to run commands on environment
+        run: |
           python -m venv venv
-          source venv/bin/activate
+          .\venv\Scripts\Activate
 
       - name: Install dependencies
-        run: pip install -r requirements.txt #-- run the file of requirements
+        run: pip install -r requirements.txt
 
       # Optional: Add step to run tests here
 
-      - name: Zip artifact for deployment 
-        run: zip release.zip ./* -r       #-- package the project
+      - name: Zip artifact for deployment
+        run: zip release.zip ./* -r
 
-      - name: Upload artifact for deployment job 
-        uses: actions/upload-artifact@v3 #-- upload the project to be deployed
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v3
         with:
           name: python-app
           path: |
@@ -65,10 +61,10 @@ jobs:
           name: python-app
 
       - name: Unzip artifact for deployment
-        run: unzip release.zip     
+        run: unzip release.zip  
         
-      - name: 'Deploy to Azure Functions' 
-        uses: Azure/functions-action@v1 #-- connect to cloud and deploy
+      - name: 'Deploy to Azure Functions'
+        uses: Azure/functions-action@v1
         id: deploy-to-function
         with:
           app-name: 'bulmabasic'

@@ -41,10 +41,9 @@
         })
         .catch(res => {
             console.log(res.status, res.statusText)
-            res.json().then(json => {
-                card.innerHTML = "<section><p>No data found</p><p>"+res.statusText+"</p></section>"
-
-            })
+            // res.json().then(json => {
+            //     card.innerHTML = "<section><p>No data found</p><p>"+res.statusText+"</p></section>"
+            // })
         })
     }
 
