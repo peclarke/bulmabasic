@@ -36,13 +36,10 @@
             if (res.ok) {
                 res.text().then(txt => card.innerHTML = "<section>"+txt+"</section>")
             }
-            return Promise.reject(res)
         })
         .catch(res => {
             console.log(res.status, res.statusText)
-            // res.json().then(json => {
-            //     card.innerHTML = "<section><p>No data found</p><p>"+res.statusText+"</p></section>"
-            // })
+            card.innerHTML = "<section><p>Something went wrong</p></section>"
         })
     }
 
