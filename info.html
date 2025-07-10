@@ -34,8 +34,7 @@
         fetch("/api/info")
         .then(res => {
             if (res.ok) {
-                console.log(res);
-                card.innerHTML = "<section>"+res+"</section>"
+                res.text().then(txt => card.innerHTML = "<section>"+txt+"</section>")
             }
             return Promise.reject(res)
         })
