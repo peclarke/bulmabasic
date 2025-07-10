@@ -20,6 +20,10 @@ jobs:
     permissions:
       contents: read #This is required for actions/checkout
 
+    defaults:
+      run:
+        working-directory: ./api
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
