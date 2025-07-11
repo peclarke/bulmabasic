@@ -63,7 +63,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: release
-          path: ./api
 
       - run: ls
 
