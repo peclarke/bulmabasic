@@ -73,7 +73,7 @@ jobs:
         with:
           app-name: 'bulmabasic'
           slot-name: 'Production'
-          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-          # scm-do-build-during-deployment: false
-          # enable-oryx-build: true
+          # package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }} # not for flex consumption apps
+          scm-do-build-during-deployment: true
+          enable-oryx-build: true
           publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
