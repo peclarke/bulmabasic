@@ -64,8 +64,6 @@ jobs:
         with:
           name: release
 
-      - run: ls
-
       - name: Unzip artifact for deployment
         run: unzip release.zip  
         
